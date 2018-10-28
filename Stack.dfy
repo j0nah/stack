@@ -21,25 +21,30 @@ class Stack<T> {
     r := stack[0];
     stack := stack[1..];
   } 
+
+  method Peek() returns (r: T)
+  requires stack != [];
+  ensures stack == old(stack)
+  {    
+    return stack[0];
+  } 
 }
 
-// method Main() 
-// {
-//       // some tests
-//       var s := new Stack<int>();
-//       s.Push(1);
-//       s.Push(2);
-//       s.Push(4);
-//       var test := s.Pop();
-//       print "\n";
-//       print test;
-//       print "\n";
-//       test := s.Pop();
-//       print "\n";
-//       print test;
-//       print "\n";
-//       test := s.Pop();
-//       print "\n";
-//       print test;
-//       print "\n";
+method Main() 
+{
+      // some tests
+      var s := new Stack<int>();
+      s.Push(1);
+      s.Push(2);
+      s.Push(4);
+      var test := s.Pop();
+      print "\n";
+      print test;
+      print "\n";
+      test := s.Peek();
+      print test;
+      test := s.Peek();
+      print "\n";
+      print test;
+      print "\n";
 }
