@@ -9,6 +9,7 @@ class Stack<T> {
   method Push(elem: T)
   modifies this;
   ensures stack == [elem] + old(stack)
+  ensures stack[0] == elem
   {
     stack := [elem] + stack;
   }
@@ -17,6 +18,7 @@ class Stack<T> {
   modifies this;
   requires stack != [];
   ensures stack == old(stack)[1..]
+  ensures r == old(stack)[0]
   {    
     r := stack[0];
     stack := stack[1..];
@@ -25,6 +27,7 @@ class Stack<T> {
   method Peek() returns (r: T)
   requires stack != [];
   ensures stack == old(stack)
+  ensures r == stack[0]
   {    
     return stack[0];
   } 
